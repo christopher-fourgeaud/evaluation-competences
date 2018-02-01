@@ -23,21 +23,21 @@ class Admin extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="adm_prenom", type="string", length=255)
+     * @ORM\Column(name="adm_prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adm_nom", type="string", length=255)
+     * @ORM\Column(name="adm_nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adm_telephone", type="string", length=255)
+     * @ORM\Column(name="adm_telephone", type="string", length=255, nullable=true)
      */
     private $telephone;
 
