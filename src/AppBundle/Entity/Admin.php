@@ -3,42 +3,41 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
- * Client
- *
- * @ORM\Table(name="cli_client")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="adm_admin")  
  */
-class Client
+class Admin extends BaseUser
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="cli_oid", type="integer")
+     * @ORM\Column(name="adm_oid", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cli_prenom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="adm_prenom", type="string", length=255)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cli_nom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="adm_nom", type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cli_telephone", type="string", length=255, nullable=true)
+     * @ORM\Column(name="adm_telephone", type="string", length=255)
      */
     private $telephone;
 
@@ -58,7 +57,7 @@ class Client
      *
      * @param string $prenom
      *
-     * @return Client
+     * @return Admin
      */
     public function setPrenom($prenom)
     {
@@ -82,7 +81,7 @@ class Client
      *
      * @param string $nom
      *
-     * @return Client
+     * @return Admin
      */
     public function setNom($nom)
     {
@@ -106,7 +105,7 @@ class Client
      *
      * @param string $telephone
      *
-     * @return Client
+     * @return Admin
      */
     public function setTelephone($telephone)
     {

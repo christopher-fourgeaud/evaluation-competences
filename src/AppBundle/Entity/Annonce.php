@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Annonce
  *
- * @ORM\Table(name="annonce")
+ * @ORM\Table(name="ann_annonce")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AnnonceRepository")
  */
 class Annonce
@@ -15,7 +15,7 @@ class Annonce
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="ann_oid", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -24,42 +24,42 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="ann_titre", type="string", length=255)
      */
     private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="string", length=255)
+     * @ORM\Column(name="ann_photo", type="string", length=255)
      */
     private $photo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nb_piece", type="string", length=255)
+     * @ORM\Column(name="ann_nb_piece", type="integer")
      */
     private $nbPiece;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="ann_prix", type="float")
      */
     private $prix;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telephone", type="string", length=255)
+     * @ORM\Column(name="ann_telephone", type="string", length=255)
      */
     private $telephone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="ann_description", type="text")
      */
     private $description;
 
