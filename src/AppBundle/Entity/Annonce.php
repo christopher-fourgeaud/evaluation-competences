@@ -63,6 +63,24 @@ class Annonce
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumn(name="cli_oid", referencedColumnName="cli_oid")
+     */
+    private $cliOid;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Admin")
+     * @ORM\JoinColumn(name="adm_oid", referencedColumnName="adm_oid")
+     */
+    private $admOid;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypeAnnonce")
+     * @ORM\JoinColumn(name="typ_oid", referencedColumnName="typ_oid")
+     */
+    private $typOid;
+
 
     /**
      * Get id
@@ -217,5 +235,76 @@ class Annonce
     {
         return $this->description;
     }
-}
 
+    /**
+     * Set cliOid
+     *
+     * @param \AppBundle\Entity\Client $cliOid
+     *
+     * @return Annonce
+     */
+    public function setCliOid(\AppBundle\Entity\Client $cliOid = null)
+    {
+        $this->cliOid = $cliOid;
+
+        return $this;
+    }
+
+    /**
+     * Get cliOid
+     *
+     * @return \AppBundle\Entity\Client
+     */
+    public function getCliOid()
+    {
+        return $this->cliOid;
+    }
+
+    /**
+     * Set admOid
+     *
+     * @param \AppBundle\Entity\Admin $admOid
+     *
+     * @return Annonce
+     */
+    public function setAdmOid(\AppBundle\Entity\Admin $admOid = null)
+    {
+        $this->admOid = $admOid;
+
+        return $this;
+    }
+
+    /**
+     * Get admOid
+     *
+     * @return \AppBundle\Entity\Admin
+     */
+    public function getAdmOid()
+    {
+        return $this->admOid;
+    }
+
+    /**
+     * Set typOid
+     *
+     * @param \AppBundle\Entity\TypeAnnonce $typOid
+     *
+     * @return Annonce
+     */
+    public function setTypOid(\AppBundle\Entity\TypeAnnonce $typOid = null)
+    {
+        $this->typOid = $typOid;
+
+        return $this;
+    }
+
+    /**
+     * Get typOid
+     *
+     * @return \AppBundle\Entity\TypeAnnonce
+     */
+    public function getTypOid()
+    {
+        return $this->typOid;
+    }
+}
