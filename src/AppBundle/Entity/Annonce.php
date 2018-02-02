@@ -3,10 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Annonce
- *
+ * @Vich\Uploadable
  * @ORM\Table(name="ann_annonce")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AnnonceRepository")
  */
@@ -30,10 +33,29 @@ class Annonce
 
     /**
      * @var string
-     *
      * @ORM\Column(name="ann_photo", type="string", length=255)
      */
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="photo_annonce", fileNameProperty="photo")
+     * @Assert\Image(
+     *     maxSize = "2000K",
+     *     mimeTypes = {"image/jpeg", "image/png"},
+     *     mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide",
+     *     notFoundMessage = "Le fichier n'a pas été trouvé sur le disque",
+     *     uploadErrorMessage = "Erreur dans l'upload du fichier",
+     *     maxSizeMessage = "Le fichier est trop volumineux"
+     * )
+     * @var File
+     */
+    private $photoFile;
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @var string
@@ -311,5 +333,27 @@ class Annonce
     public function __toString()
     {
         return $this->getNom();
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile
+     *
+     * @return photo
+     */
+    public function setPhotoFile(File $photo = null)
+    {
+        $this->photoFile = $photo;
+
+        if ($photo)
+            $this->updatedAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+    /**
+     * @return File|null
+     */
+    public function getPhotoFile()
+    {
+        return $this->photoFile;
     }
 }

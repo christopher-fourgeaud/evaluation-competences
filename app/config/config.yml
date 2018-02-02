@@ -77,6 +77,15 @@ fos_user:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
 
+# app/config/config.yml 
+vich_uploader: 
+    db_driver: orm 
+    mappings: 
+        photo_annonce: 
+            uri_prefix: /annonces/photos 
+            upload_destination: '%kernel.root_dir%/../web/annonces/photos' 
+            namer: vich_uploader.namer_uniqid
+
 easy_admin:
     site-name: "CarcassonneImmo"
     design:
@@ -86,16 +95,15 @@ easy_admin:
             - { entity: 'Client', icon: 'address-card' }
             - { entity: 'TypeAnnonce', icon: 'folder-open' }
     entities:
-    
         Annonces:
             class: AppBundle\Entity\Annonce
             label: 'Annonces'
             form:
                 fields:
                     - titre
-                    - photo
+                    - { property: 'photoFile', type: 'vich_image', help: 'Taille max 1.5Mo / Format .jpeg et .png' }
                     - { property: 'nbPiece', label: "Nombre de pièces"}
-                    - prix
+                    - { property: 'prix', type: 'money', type_options: { currency: 'EUR' } }
                     - telephone
                     - description
                     - { property: 'cliOid', label: "Propriétaire"}
@@ -104,7 +112,7 @@ easy_admin:
             list:
                 fields:
                     - titre
-                    - photo
+                    - { property: 'photo', type: 'image', base_path: '/annonces/photos' }
                     - nbPiece
         Admin:
             class: AppBundle\Entity\Admin
@@ -160,3 +168,69 @@ easy_admin:
             list:
                 fields:
                     - nom
+
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:    [ ]
+   #java: /usr/bin/java
+    java: C:\Program Files\Java\jdk1.8.0_65\bin\java.exe
+    filters:
+        cssrewrite: ~
+        cssembed:
+            jar: "%kernel.root_dir%/Resources/java/cssembed.jar"        
+            yui_js:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        lessphp:
+            file: "%kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php"   
+            apply_to: ".less$"
+    assets:
+        jquery_js:
+            inputs:
+                - "%kernel.root_dir%/../vendor/components/jquery/jquery.min.js"            
+            filters: [?yui_js]
+            output: js/jquery.min.js
+           
+        bootstrap_css:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less"
+            filters:
+                - lessphp
+                - cssrewrite
+            output: css/bootstrap.css            
+
+        bootstrap_js:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js"
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js"
+            filters: [?yui_js]
+            output: js/bootstrap.js             
+        fonts_glyphicons_eot:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.eot"
+            output: "fonts/glyphicons-halflings-regular.eot"
+        fonts_glyphicons_svg:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.svg"
+            output: "fonts/glyphicons-halflings-regular.svg"
+        fonts_glyphicons_ttf:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.ttf"
+            output: "fonts/glyphicons-halflings-regular.ttf"
+        fonts_glyphicons_woff:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.woff"
+
+            output: "fonts/glyphicons-halflings-regular.woff"
