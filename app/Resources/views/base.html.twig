@@ -8,23 +8,27 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <h1 class="text-center">Carcassonne Immobilier</h1>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">CarcassoneImobilier</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="/">Accueil</a>
-                    </li>
-                    <li>
-                        <a href="#">Liste des annonces</a>
-                    </li>
-                </ul>
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">Carcassonne Immobilier</h1>
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="/">Carcassone Imobilier</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="/">Accueil</a>
+                            </li>
+                            <li>
+                                <a href="liste">Liste des annonces</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </nav>
-        {% block body %}{% endblock %}
+            {% block body %}{% endblock %}
+        </div>
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
         {% block javascripts %}{% endblock %}

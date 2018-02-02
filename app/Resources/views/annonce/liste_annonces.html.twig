@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2 class="text-center">Liste des annonces</h2>
+<div class="col-xs-5 col-xs-offset-7">
+    {{ form_start(form) }}
+    {{ form_widget(form.recherche) }}
+    <input type="submit" value="rechercher">
+    {{ form_end(form) }}
+    
+</div>
+<br>
+<hr class="col-xs-8 col-xs-offset-2">
+<ul class="">
+    {% for annonce in annonces %}
+    <div class="annonce">
+        <ul class="list-unstyled">
+            <li class="col-xs-4 col-xs-offset-4 text-center"><a href="#">{{ annonce.titre }}</a></li>
+            <li class="col-xs-6 text-center">{{ annonce.nbPiece }} pièces</li>
+            <li class="col-xs-6 text-center">{{ annonce.prix }} €</li>
+        </ul>
+    </div>
+    {% endfor %}
+</ul>
+
+{% endblock %}
