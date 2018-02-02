@@ -78,28 +78,85 @@ fos_user:
         sender_name: "%mailer_user%"
 
 easy_admin:
+    site-name: "CarcassonneImmo"
+    design:
+        menu:
+            - { entity: 'Admin', icon: 'user' }
+            - { entity: 'Annonces', icon: 'buysellads' }
+            - { entity: 'Client', icon: 'address-card' }
+            - { entity: 'TypeAnnonce', icon: 'folder-open' }
     entities:
+    
+        Annonces:
+            class: AppBundle\Entity\Annonce
+            label: 'Annonces'
+            form:
+                fields:
+                    - titre
+                    - photo
+                    - { property: 'nbPiece', label: "Nombre de pièces"}
+                    - prix
+                    - telephone
+                    - description
+                    - { property: 'cliOid', label: "Propriétaire"}
+                    - { property: 'admOid', label: "Créateur de l'annonce"}
+                    - { property: 'typOid', label: "Type d'annonce"}
+            list:
+                fields:
+                    - titre
+                    - photo
+                    - nbPiece
         Admin:
             class: AppBundle\Entity\Admin
             label: 'Employés'
             form:
             # Affichage du formulaire d'édition
                 fields:
-                    - prenom
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Informations de base' }
                     - nom
+                    - prenom
+                    - telephone
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Identifiants' }
                     - email
-                    - { property: 'enabled', label: 'Activation du compte'}
                     - { property: 'username', label: "Nom d'utilisateur"}
                     - { property: 'plainPassword', label: "Mot de passe", type: 'text', type_options: { required: false } }
+                    - { type: 'group', css_class: 'col-sm-12', help: 'Administration' }
+                    - { property: 'enabled', label: 'Activation du compte'}
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: {'ROLE_ADMIN': 'ROLE_ADMIN' } } }
-                    
             # Affichage de la liste des entrées 
             list:
                 fields:
                     - username
-                    - prenom
                     - nom
+                    - prenom
                     - email
                     - { property: 'enabled', label: 'Activation du compte'}
                     - { property: 'lastLogin', label: 'Dernière connexion'}
-                    
+        Client:
+            class: AppBundle\Entity\Client
+            label: 'Clients'
+            form:
+            # Affichage du formulaire d'édition
+                fields:
+                    - { type: 'group', css_class: 'col-sm-12', label: 'Informations du client' }
+                    - prenom
+                    - nom
+                    - telephone
+            # Affichage de la liste des entrées 
+            list:
+                fields:
+                    - nom
+                    - prenom
+                    - telephone
+        TypeAnnonce:
+            class: AppBundle\Entity\TypeAnnonce
+            label: "Type d'annonces"
+            form:
+            # Affichage du formulaire d'édition
+                fields:
+                    - { type: 'group', css_class: 'col-sm-12', label: 'Informations du client' }
+                    - nom
+            # Affichage de la liste des entrées 
+            list:
+                fields:
+                    - nom

@@ -307,4 +307,9 @@ class Annonce
     {
         return $this->typOid;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }
