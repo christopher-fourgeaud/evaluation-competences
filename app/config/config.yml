@@ -76,3 +76,30 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+easy_admin:
+    entities:
+        Admin:
+            class: AppBundle\Entity\Admin
+            label: 'Employés'
+            form:
+            # Affichage du formulaire d'édition
+                fields:
+                    - prenom
+                    - nom
+                    - email
+                    - { property: 'enabled', label: 'Activation du compte'}
+                    - { property: 'username', label: "Nom d'utilisateur"}
+                    - { property: 'plainPassword', label: "Mot de passe", type: 'text', type_options: { required: false } }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: {'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+                    
+            # Affichage de la liste des entrées 
+            list:
+                fields:
+                    - username
+                    - prenom
+                    - nom
+                    - email
+                    - { property: 'enabled', label: 'Activation du compte'}
+                    - { property: 'lastLogin', label: 'Dernière connexion'}
+                    
