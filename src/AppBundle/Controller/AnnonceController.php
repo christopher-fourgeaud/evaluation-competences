@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class AnnonceController extends Controller
 {
     /**
-     * @Route("/liste")
+     * @Route("/annonces")
      */
     public function listAction(Request $request){
         $em = $this->getDoctrine()->getManager();
@@ -39,6 +39,18 @@ class AnnonceController extends Controller
         return $this->render('/annonce/liste_annonces.html.twig', array(
             'annonces' => $annonces,
             'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/annonce/{id}")
+     */
+    public function showAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $annonce = $em->getRepository("AppBundle:Annonce")->findOneById($id);
+
+        return $this->render('/annonce/annonce.html.twig', array(
+            'annonce' => $annonce
         ));
     }
 }

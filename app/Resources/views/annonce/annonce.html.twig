@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">{{ annonce.titre }}<h1>
+    <h4 class="col-xs-6 text-center">Nombre de pièces : {{ annonce.nbPiece }}</h4>
+    <h4 class="col-xs-6 text-center">Prix : {{ annonce.prix }} €</h4>
+    <img src="{{ vich_uploader_asset(annonce, 'photoFile') }}" alt="Photo de l'annonce" class="photo col-xs-8 col-xs-offset-2">
+    <hr>
+    <h3 class="col-xs-4 col-xs-offset-4 text-center">Description</h3>
+    <p class="col-xs-8 col-xs-offset-2 ">{{ annonce.description }}</p>
+
+
+
+{% endblock %}

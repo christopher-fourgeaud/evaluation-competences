@@ -15,7 +15,7 @@
     {% for annonce in annonces %}
     <div class="annonce">
         <ul class="list-unstyled">
-            <li class="col-xs-4 col-xs-offset-4 text-center"><a href="#">{{ annonce.titre }}</a></li>
+            <li class="col-xs-4 col-xs-offset-4 text-center"><a href="/annonce/{{ annonce.id }}">{{ annonce.titre }}</a></li>
             <li class="col-xs-6 text-center">{{ annonce.nbPiece }} pièces</li>
             <li class="col-xs-6 text-center">{{ annonce.prix }} €</li>
         </ul>
