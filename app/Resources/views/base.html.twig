@@ -24,6 +24,16 @@
                                 <a href="/annonces">Liste des annonces</a>
                             </li>
                         </ul>
+                        {% if app.user %}
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="/admin"><span class="glyphicon glyphicon-cog"></span> Admin</a></li>
+                                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                </ul>
+                        {% else %}
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                </ul>
+                        {% endif %}
                     </div>
                 </nav>
             </div>
