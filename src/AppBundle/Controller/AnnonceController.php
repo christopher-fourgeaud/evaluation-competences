@@ -19,9 +19,10 @@ class AnnonceController extends Controller
 
         $form = $this->createFormBuilder()
         ->add("recherche", SearchType::class)
-        // ->add("type", EntityType::class, array(
-        //         'class' => 'AppBundle:TypeAnnonce',
-        //     ))
+        ->add("type", EntityType::class, array(
+                'class' => 'AppBundle:TypeAnnonce',
+                'placeholder' => 'Sélectionner un type d\'annonce',
+            ))
         ->getForm();
 
         $form->handleRequest($request);
