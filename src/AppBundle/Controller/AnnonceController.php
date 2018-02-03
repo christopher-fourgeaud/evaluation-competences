@@ -18,10 +18,13 @@ class AnnonceController extends Controller
         $annonces = $em->getRepository("AppBundle:Annonce")->findAll();
 
         $form = $this->createFormBuilder()
-        ->add("recherche", SearchType::class)
+        ->add("recherche", SearchType::class, array(
+            'required' => false,
+        ))
         ->add("type", EntityType::class, array(
                 'class' => 'AppBundle:TypeAnnonce',
                 'placeholder' => 'Sélectionner un type d\'annonce',
+                'required' => false,
             ))
         ->getForm();
 
@@ -31,9 +34,18 @@ class AnnonceController extends Controller
             $data = $form->getData();
             $parameter = $data["recherche"];
 
-            $query = $em->createQuery("select a from AppBundle\Entity\Annonce as a
-            where a.titre like :p ")
+            if(!($data['type'])){
+                $query = $em->createQuery("select a from AppBundle\Entity\Annonce as a
+                where a.titre like :p ")
                 ->setParameter('p', '%' . $parameter . '%');
+            }else{
+                $parameter2 = $data['type']->getId();
+                $query = $em->createQuery("select a from AppBundle\Entity\Annonce as a
+                join a.typOid as t where t.id = :p2 and
+                a.titre like :p   ")
+                ->setParameters(array('p' => '%' . $parameter . '%', 'p2' => $parameter2));
+            }
+            
             $annonces = $query->getResult();
         }
 
