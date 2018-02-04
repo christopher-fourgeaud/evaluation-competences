@@ -87,10 +87,10 @@ vich_uploader:
             namer: vich_uploader.namer_uniqid
 
 easy_admin:
-    site-name: "CarcassonneImmo"
+    site-name: '<em style="font-size: 80%;">Carcassonne Immobilier</em>'
     design:
         menu:
-            - { entity: 'Admin', icon: 'user' }
+            - { entity: 'Admin', icon: 'user',default: true }
             - { entity: 'Annonces', icon: 'buysellads' }
             - { entity: 'Client', icon: 'address-card' }
             - { entity: 'TypeAnnonce', icon: 'folder-open' }
@@ -100,6 +100,7 @@ easy_admin:
             label: 'Annonces'
             form:
                 fields:
+                    - { type: 'group', css_class: 'col-sm-12', label: "Fiche de l'annonce" }
                     - titre
                     - { property: 'photoFile', type: 'vich_image', help: 'Taille max 1.5Mo / Format .jpeg et .png' }
                     - { property: 'nbPiece', label: "Nombre de pièces"}
@@ -162,7 +163,7 @@ easy_admin:
             form:
             # Affichage du formulaire d'édition
                 fields:
-                    - { type: 'group', css_class: 'col-sm-12', label: 'Informations du client' }
+                    - { type: 'group', css_class: 'col-sm-12', label: "Type d'annonce" }
                     - nom
             # Affichage de la liste des entrées 
             list:

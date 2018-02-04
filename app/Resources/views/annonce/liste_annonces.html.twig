@@ -27,18 +27,22 @@
         {{ form_end(form) }}
     </div>
 </div>
-
 <br>
 <ul class="">
     {% for annonce in annonces %}
-    <div class="annonce">
-        <ul class="list-unstyled">
-            <li class="col-xs-4 col-xs-offset-4 text-center"><a href="/annonce/{{ annonce.id }}">{{ annonce.titre }}</a></li>
-            <li class="col-xs-6 text-center">{{ annonce.nbPiece }} pièces</li>
-            <li class="col-xs-6 text-center">{{ annonce.prix }} €</li>
-        </ul>
-    </div>
+        <div class="index-content">
+            <div>
+                <div class="card">
+                    <ul class="list-unstyled">
+                        <li class="col-xs-12 text-center"><h4><a href="/annonce/{{ annonce.id }}">{{ annonce.titre }}</a></h4></li>
+                        <div class="row">
+                            <li class="col-xs-6 text-center"><span class="blue-button">{{ annonce.nbPiece }} pièces</span></li>
+                            <li class="col-xs-6 text-center"><span class="blue-button">{{ annonce.prix }} €</span></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 </ul>
-
 {% endblock %}
