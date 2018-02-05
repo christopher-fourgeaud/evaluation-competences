@@ -1183,6 +1183,7 @@ class ClientData extends AbstractFixture implements FixtureInterface
             ->setTelephone('0102030405');
             $manager->persist($client);
             $manager->flush();
+            
             $this->addReference('client'.$i, $client);
         }
     }

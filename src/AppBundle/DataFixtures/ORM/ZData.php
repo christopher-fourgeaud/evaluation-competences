@@ -67,8 +67,9 @@ Maecenas laoreet, dolor et efficitur tempor, diam enim malesuada diam, ut laoree
 
 Nullam vitae accumsan metus. Fusce non lectus a odio tincidunt interdum non sed nunc. Vestibulum hendrerit sapien lacus, ac sollicitudin leo cursus ut. Ut purus sem, tincidunt non nisi vitae, tempor porttitor felis. Pellentesque tincidunt, erat a dapibus ultrices, eros metus tempor sem, at ultrices lorem nulla sit amet elit. Duis rhoncus malesuada varius. Pellentesque porta sapien diam, et aliquam turpis ultricies et. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean condimentum lectus orci, at efficitur nisl accumsan id. Sed pharetra condimentum felis, nec cursus mi. Etiam ante tellus, condimentum in tellus sit amet, efficitur dapibus sapien. Ut eget hendrerit justo. Nulla aliquam felis velit, sed vestibulum ipsum pellentesque a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi commodo at elit scelerisque pharetra.";
 
-
-        for ($i = 0; $i < 10; $i++) {
+        $j = 0;
+        $nbAnnnonce= 10;
+        for ($i = 0; $i < $nbAnnnonce; $i++) {
             $randPicture = rand(1, 7);
             $annonce = new Annonce();
             $annonce->setTitre(randomTitre())
@@ -78,8 +79,14 @@ Nullam vitae accumsan metus. Fusce non lectus a odio tincidunt interdum non sed 
                 ->setTelephone('0102030405')
                 ->setAdmOid($this->getReference('admin'))
                 ->setCliOid($this->getReference('client'.$i))
-                // ->setTypeOid(rand(1, 2))
                 ->setDescription($lorem);
+                if ($j<$nbAnnnonce/2) {
+                    $annonce->setTypOid($this->getReference('type1'));
+                    $j++;
+                }else{
+                    $annonce->setTypOid($this->getReference('type2'));
+                    $j++;
+                }
 
             $manager->persist($annonce);
             $manager->flush();
