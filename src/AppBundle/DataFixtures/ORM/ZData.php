@@ -77,7 +77,7 @@ Nullam vitae accumsan metus. Fusce non lectus a odio tincidunt interdum non sed 
                 ->setPrix(rand(100000, 1000000))
                 ->setTelephone('0102030405')
                 ->setAdmOid($this->getReference('admin'))
-                ->setCliOid($this->getReference('client'))
+                ->setCliOid($this->getReference('client'.$i))
                 // ->setTypeOid(rand(1, 2))
                 ->setDescription($lorem);
 

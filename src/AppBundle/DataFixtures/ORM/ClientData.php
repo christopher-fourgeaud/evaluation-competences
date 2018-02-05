@@ -3,9 +3,10 @@ namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use AppBundle\Entity\Client;
 
-class ClientData implements FixtureInterface
+class ClientData extends AbstractFixture implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -1182,6 +1183,7 @@ class ClientData implements FixtureInterface
             ->setTelephone('0102030405');
             $manager->persist($client);
             $manager->flush();
+            $this->addReference('client'.$i, $client);
         }
     }
 }
