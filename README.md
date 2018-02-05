@@ -15,4 +15,65 @@ Below you will find the instructions to pick the project from my repository and 
 
 # Instructions
 
-### 1 - Pull from github
+### **1 - Pull from github**
+
+First you need to do a git clone from my repository with the command : 
+
+**git clone git@github.com:christopher-fourgeaud/evaluation-competences.git**
+
+### **2 - Install all the bundles**
+
+The bundles i used during the project are :
+- 1 - FosuserBundle | I used it to generate my User entity and login functionality.
+- 2 - EasyadminBundle | I used it to create my backend interface for the admin user.
+- 3 - VichUploaderBundle | I used it to handle the image upload for the announce entity.
+- 4 - AsseticBundle | I used it to take care of the implementation of Bootstrap 3.
+- 5 - DoctrineFixturesBundle | I used it to generate a set of data when generating the project.
+
+To install all the bindles, use the terminal command :
+
+**composer install**
+
+it will propose to set the parameters  for your database like that :
+Some parameters are missing. Please provide them.
+database_host (127.0.0.1): 
+database_port (null): 
+database_name (symfony): testerino
+database_user (root): 
+database_password (null): admin
+mailer_transport (smtp): 
+mailer_host (127.0.0.1): 
+mailer_user (null): test@test
+mailer_password (null): 
+secret (ThisTokenIsNotSoSecretChangeIt): 
+
+You **have** to put an mail_user adress in order to work else you have to redo all the installation again.
+
+### **3 - Create and update the doctrine schema**
+
+To create the database you have to do the terminal command :
+
+**bin/console doctrine:database:create**
+
+And to update the doctrine schema, use : 
+
+**bin/console doctrine:schema:update --force**
+
+### **4 - To get the set of data from the DoctrineFixtureBundle** 
+
+To get the set of data from the doctrinefixturebundle, simply use the command : 
+
+**bin/console doctrine:fixtures:load**
+
+
+### **5 - Done**
+
+The installation is complete, simply run the server with : 
+
+**bin/console:server:start**
+
+And head to : http://127.0.0.1:8000/
+
+The admin logins are : 
+username : admin
+password : test
