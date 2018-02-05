@@ -3,9 +3,10 @@ namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use AppBundle\Entity\Admin;
 
-class AdminData implements FixtureInterface
+class AdminData extends AbstractFixture implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -22,5 +23,7 @@ class AdminData implements FixtureInterface
 
         $manager->persist($admin);
         $manager->flush();
+
+        $this->addReference('admin', $admin);
     }
 }
