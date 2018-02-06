@@ -13,6 +13,8 @@ The instruction of the exercise can be found at : [Simplon wiki](https://github.
 For this project i used the Php framework Symfony in his version 3.3 ( because we used it during our formation ). I used the Symfony framework because he offer the possibility to include bundle to our project which facilitate the work on our given project.
 Below you will find the instructions to pick the project from my repository and all the terminals command to use to make the website work.
 
+The wireframe, M.C.D. and M.P.D. can be found on the /web folder of the Symfony repository
+
 # Instructions
 
 ### **1 - Pull from github**
