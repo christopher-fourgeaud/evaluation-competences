@@ -68,6 +68,10 @@ To get the set of data from the doctrinefixturebundle, simply use the command :
 
 **bin/console doctrine:fixtures:load**
 
+The client name are radomly generated as well as the anounces title / price / number of rooms and a client is assigned to it radomly.
+
+I had a problem while using doctrine fixture, it load the files in alphabetical order and in order to assign my client randomly to my announce i had to rename the announce fixture file so that the DoctrineFixtureBundle load the file in the good order.
+
 
 ### **5 - Done**
 
