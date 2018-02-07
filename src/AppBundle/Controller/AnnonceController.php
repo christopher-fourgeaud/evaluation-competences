@@ -19,7 +19,7 @@ class AnnonceController extends Controller
         $annonces = $this->get('knp_paginator')->paginate(
             $listeAnnonces,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
-            1/*nbre d'éléments par page*/
+            5/*nbre d'éléments par page*/
         );
         
 
