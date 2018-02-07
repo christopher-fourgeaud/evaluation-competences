@@ -31,6 +31,7 @@ The bundles i used during the project are :
 - 3 - VichUploaderBundle | I used it to handle the image upload for the announce entity.
 - 4 - AsseticBundle | I used it to take care of the implementation of Bootstrap 3.
 - 5 - DoctrineFixturesBundle | I used it to generate a set of data when generating the project.
+- 6 - KnpPaginatorBundle | This bundle allow you to make easy pagination on your website.
 
 To install all the bindles, use the terminal command :
 

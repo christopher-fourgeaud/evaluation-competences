@@ -15,7 +15,13 @@ class AnnonceController extends Controller
      */
     public function listAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $annonces = $em->getRepository("AppBundle:Annonce")->findAll();
+        $listeAnnonces = $em->getRepository("AppBundle:Annonce")->findAll();
+        $annonces = $this->get('knp_paginator')->paginate(
+            $listeAnnonces,
+            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
+            1/*nbre d'éléments par page*/
+        );
+        
 
         $form = $this->createFormBuilder()
         ->add("recherche", SearchType::class, array(
@@ -46,12 +52,13 @@ class AnnonceController extends Controller
                 ->setParameters(array('p' => '%' . $parameter . '%', 'p2' => $parameter2));
             }
             
-            $annonces = $query->getResult();
+            $listeAnnonces = $query->getResult();
         }
+        
 
         return $this->render('/annonce/liste_annonces.html.twig', array(
             'annonces' => $annonces,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
